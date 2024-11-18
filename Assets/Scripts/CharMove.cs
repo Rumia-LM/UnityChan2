@@ -21,7 +21,7 @@ public class CharMove : MonoBehaviour {
 	void Update () {
 		//前進成分を取得(0~1),今回はバックはしない
 		float acc = Mathf.Max (Input.GetAxis ("Vertical"), 0f);
-		//接地していたら
+		//設置いていたら
 		if (cc.isGrounded) {
 			//左右キーで回転
 			float rot = Input.GetAxis ("Horizontal");
@@ -46,7 +46,10 @@ public class CharMove : MonoBehaviour {
 		}
 
 	}
-	
+	//ジャンプモーションで地面から足が離れたときに呼ばれるイベント
+	public void OnJumpStart () {
+		//足が離れたらトランスフォームを上方に移動する。
+		dir.y = jumpPower;
+	}
+
 }
-
-
